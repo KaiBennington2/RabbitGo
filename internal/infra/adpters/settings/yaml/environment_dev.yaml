@@ -1,0 +1,40 @@
+databases:
+  - connection_name: db_mysql
+    driver: mysql
+    host: localhost
+    port: 3306
+    db_name: ${SECRET_MYSQL_DB_NAME}
+    username: ${SECRET_MYSQL_USERNAME_TEST}
+    password: ${SECRET_MYSQL_PASSWORD_TEST}
+    params:
+      parseTime: true
+    max_open_connections: 5
+    max_idle_connections: 5
+    connection_max_lifetime: 30m
+    default_schema: ms_eco_users_default_test
+  - connection_name: db_mongo
+    driver: mongodb
+    host: localhost
+    port: 27017
+    db_name: ${SECRET_MONGO_DB_NAME}
+    username: ${SECRET_MONGO_USERNAME_TEST}
+    password: ${SECRET_MONGO_PASSWORD_TEST}
+    params:
+      parseTime: true
+      authMechanism: SCRAM-SHA-256
+    max_open_connections: 5
+    max_idle_connections: 5
+    connection_max_lifetime: 30m
+    default_schema: ms_eco_users_default_test
+server_info:
+  port: 8080
+  path_base: true
+  path_name: dev
+message_brokers:
+  - broker_name: rabbitmq
+    connection_name: mb_rabbitmq
+    driver: amqp
+    username: ${SECRET_BROKER_USERNAME_TEST}
+    password: ${SECRET_BROKER_PASSWORD_TEST}
+    host: localhost
+    port: 5672
